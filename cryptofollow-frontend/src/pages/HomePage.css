@@ -1,0 +1,80 @@
+/* src/pages/HomePage.css */
+
+/* --- O Grid Principal da Página --- */
+.home-layout-grid {
+  display: grid;
+  /* Define as colunas: 45% para a esquerda, 55% para a direita */
+  grid-template-columns: 45% 1fr; 
+  gap: 30px; /* Espaço entre as colunas */
+  width: 100%;
+}
+
+.left-column {
+  /* A coluna da esquerda flui naturalmente */
+}
+
+.right-column {
+  /* Faz a coluna da direita ter um scroll independente */
+  /* Isso é ótimo para a tabela não esticar a página */
+  max-height: 90vh; /* Ajuste conforme necessário (altura da tela) */
+  overflow-y: auto; /* Adiciona scroll SÓ aqui */
+  padding-right: 15px; /* Evita que o scroll grude na tabela */
+}
+
+/* --- Estilos do Conteúdo (Header, Títulos, Gráficos) --- */
+
+.home-header {
+  text-align: left; /* Alinha à esquerda, não mais centralizado */
+  margin-bottom: 40px;
+}
+
+.home-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.highlight-red {
+  color: #e53935;
+}
+
+.home-header p {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+/* Títulos de seção (h2) */
+.left-column h2,
+.right-column h2 {
+  font-size: 1.8rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+/* Grid dos gráficos (dentro da coluna esquerda) */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 colunas para os gráficos */
+  gap: 20px;
+}
+
+/* --- Responsividade (Telas Pequenas) --- */
+@media (max-width: 1200px) {
+  /* Quando a tela for muito estreita, as colunas ficam uma sobre a outra */
+  .home-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .right-column {
+    max-height: none; /* Remove o limite de altura no modo coluna única */
+    overflow-y: visible;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Em telas de celular, os gráficos também ficam em coluna única */
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}

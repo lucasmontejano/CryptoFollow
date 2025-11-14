@@ -1,0 +1,242 @@
+/* src/App.css */
+
+/* === 1. RESET E ESTILOS GLOBAIS === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1535 50%, #2d1b3d 100%);
+  color: #f4f4f4;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Efeitos de fundo animados */
+body::before {
+  content: '';
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  border-radius: 50%;
+  animation: pulse 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+  bottom: -100px;
+  left: -100px;
+  border-radius: 50%;
+  animation: pulse 10s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.5; 
+  }
+  50% { 
+    transform: scale(1.2); 
+    opacity: 0.8; 
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === 2. CONTAINER PRINCIPAL === */
+.App {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* === 3. TABELA - ESTILO ATUALIZADO === */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+}
+
+thead th {
+  background: transparent;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 15px 20px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+tbody tr {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  animation: slideUp 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
+tbody tr:nth-child(1) { animation-delay: 0.05s; }
+tbody tr:nth-child(2) { animation-delay: 0.1s; }
+tbody tr:nth-child(3) { animation-delay: 0.15s; }
+tbody tr:nth-child(4) { animation-delay: 0.2s; }
+tbody tr:nth-child(5) { animation-delay: 0.25s; }
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.1);
+}
+
+tbody td {
+  padding: 20px;
+  border: none;
+  position: relative;
+}
+
+tbody td:first-child {
+  border-radius: 15px 0 0 15px;
+}
+
+tbody td:last-child {
+  border-radius: 0 15px 15px 0;
+}
+
+/* === 4. CÉLULAS ESPECIAIS === */
+.coin-cell {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.coin-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+tbody tr:hover .coin-logo {
+  transform: scale(1.1);
+}
+
+/* Badge de Rank */
+td:first-child {
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Preço com destaque */
+td:nth-child(3) {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Mudança de preço com ícones visuais */
+.price-up,
+.price-down {
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.price-up {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.price-up::before {
+  content: '↑';
+  font-size: 18px;
+}
+
+.price-down {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.price-down::before {
+  content: '↓';
+  font-size: 18px;
+}
+
+/* === 5. SCROLLBAR CUSTOMIZADA === */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.5);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.7);
+}
+
+/* === 6. RESPONSIVIDADE === */
+@media (max-width: 768px) {
+  .App {
+    padding: 15px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  tbody td {
+    padding: 15px;
+  }
+
+  .coin-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  thead th {
+    font-size: 12px;
+    padding: 10px 15px;
+  }
+}
